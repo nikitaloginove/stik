@@ -1,7 +1,7 @@
-import './assets/main.css'
+import './src/assets/main.css'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './src/App.vue'
 
 // import {swiper, swiperSlide} from 'swiper/vue';
 // import swiperCore from "swiper";
