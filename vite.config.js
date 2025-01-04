@@ -6,7 +6,6 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig(() => {
     return {
-        base: import.meta.env?.MODE === 'production' ? '/stik/' : '/',
         plugins: [
             vue(),
             vueDevTools(),
