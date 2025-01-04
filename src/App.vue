@@ -3,15 +3,15 @@ import { ref, computed, onMounted } from 'vue';
 
 const slides = ref([
     {
-        image: '../images/picture.png',
+        image: new URL('./assets/images/picture.png', import.meta.url).href,
         alt: 'Slide 1',
     },
     {
-        image: '../images/picture2.png',
+        image: new URL('./assets/images/picture2.png', import.meta.url).href,
         alt: 'Slide 2',
     },
     {
-        image: '../images/picture3.png',
+        image: new URL('./assets/images/picture3.png', import.meta.url).href,
         alt: 'Slide 3',
     },
 ]);
@@ -69,16 +69,16 @@ onMounted(() => {
 <template>
     <header>
         <div class="header-menu-mobile">
-          <img src="../images/lk.svg" alt="личный кабинет" class="lk">
-          <img src="../images/find.svg" alt="поиск" class="find">
+          <img src="./assets/images/lk.svg" alt="личный кабинет" class="lk">
+          <img src="./assets/images/find.svg" alt="поиск" class="find">
         </div>
-        <img src="../images/basket.svg" alt="корзина" class="basket-mobile">
-        <img src="../images/logo.svg" alt="логотип" class="logo">
+        <img src="./assets/images/basket.svg" alt="корзина" class="basket-mobile">
+        <img src="./assets/images/logo.svg" alt="логотип" class="logo">
         <div class="header-menu">
-            <img src="../images/find.svg" alt="поиск" class="find">
-            <img src="../images/save1.svg" alt="сохранить" class="save">
-            <img src="../images/lk.svg" alt="личный кабинет" class="lk">
-            <img src="../images/basket.svg" alt="корзина" class="basket">
+            <img src="./assets/images/find.svg" alt="поиск" class="find">
+            <img src="./assets/images/save1.svg" alt="сохранить" class="save">
+            <img src="./assets/images/lk.svg" alt="личный кабинет" class="lk">
+            <img src="./assets/images/basket.svg" alt="корзина" class="basket">
         </div>
     </header>
 
@@ -106,14 +106,14 @@ onMounted(() => {
             </div>
             <div class="controls">
                 <button @click="prevSlide" :disabled="currentIndex === 0" class="prev">
-                    <img src="../images/prev.svg" alt="предыдущая картинка">
+                    <img src="./assets/images/prev.svg" alt="предыдущая картинка">
                 </button>
                 <button
                     @click="nextSlide"
                     :disabled="currentIndex === slides.length - 1"
                     class="next"
                 >
-                    <img src="../images/next.svg" alt="следуюая картинка">
+                    <img src="./assets/images/next.svg" alt="следуюая картинка">
                 </button>
             </div>
           </div>
@@ -131,7 +131,7 @@ onMounted(() => {
           <div class="title-section">
             <h3 class="main-title">ЖАКЕТ УДЛИНЁННЫЙ, БЕЛЫЙ</h3>
             <p class="price">8900 RUB</p>
-            <img src="../images/save.svg" alt="сохранить" class="save-title-icon">
+            <img src="./assets/images/save.svg" alt="сохранить" class="save-title-icon">
           </div>
           <div class="sizes">
             <h4 class="sizes-title">Размеры</h4>
@@ -163,11 +163,11 @@ onMounted(() => {
           </div>
           <div class="add-to-basket">
             <button class="add-button">ДОБАВИТЬ В КОРЗИНУ</button>
-            <button class="save-button"><img src="../images/save.svg" alt="сохранить"></button>
+            <button class="save-button"><img src="./assets/images/save.svg" alt="сохранить"></button>
           </div>
           <div class="characteristics">
-            <span class="info">ОПИСАНИЕ <span><img src="../images/plus.svg" alt="аккордеон" class="plus"></span></span>
-            <span class="care">СОСТАВ И УХОД <span><img src="../images/plus.svg" alt="аккордеон" class="plus"></span></span>
+            <span class="info">ОПИСАНИЕ <span><img src="./assets/images/plus.svg" alt="аккордеон" class="plus"></span></span>
+            <span class="care">СОСТАВ И УХОД <span><img src="./assets/images/plus.svg" alt="аккордеон" class="plus"></span></span>
           </div>
         </section>
     </main>
