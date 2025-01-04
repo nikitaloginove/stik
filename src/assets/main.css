@@ -1,0 +1,435 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 400;
+}
+
+header {
+  width: 100%;
+  max-height: 86px;
+  display: grid;
+  padding: 31px 0 31px;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.logo { 
+  justify-self: center;
+  grid-row-start: 1;
+  grid-column-start: 2;
+}
+
+.header-menu {
+  display: flex;
+  gap: 18px;
+  justify-self: end;
+  grid-column-start: 3;
+  grid-row-start: 1;
+  padding-right: 48px;
+  cursor: pointer;
+}
+
+.header-menu-mobile {
+  display: none;
+}
+
+.basket-mobile {
+  display: none;
+}
+
+main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gallery-and-details{
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.galery {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  margin-inline-end: 30px;
+  gap: 4px;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.controls {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  right: 4%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.prev {
+  width: 32px;
+  height: 32px;
+  background-color: #FFFFFF66;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.next {
+  width: 32px;
+  height: 32px;
+  background-color: #FFFFFF66;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev:active {
+  opacity: 40%;
+}
+
+.next:active {
+  opacity: 40%;
+}
+
+.description {
+  padding-inline-start: 61px;
+}
+
+.main-title {
+  font-size: 12px;
+}
+
+.price {
+  font-size: 12px;
+}
+
+.title-section,.sizes {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.save-title-icon {
+  display: none;
+}
+
+.sizes {
+  padding-top: 31px;
+  width: 223px;
+  display: grid;
+  gap: 0 14px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  font-size: 10px;
+}
+
+.sizes-title {
+  grid-column-start: 1;
+}
+
+.super-small {
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+
+.small {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+.comment-xs {
+  grid-column-start: 1;
+  grid-row-start: 3;
+  justify-self: center;
+  padding-top: 3px;
+  color: #BDBDBD;
+}
+
+.comment-m {
+  grid-column-start: 3;
+  grid-row-start: 3;
+  justify-self: center;
+  padding-top: 3px;
+  color: #BDBDBD;
+}
+
+.size-button {
+  min-width: 65px;
+  padding: 9px 24px;
+  background-color: inherit;
+  font-size: 10px;
+  border: 1px solid black;
+}
+
+.medium {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  color: #BDBDBD;
+  border: 1px solid #BDBDBD;
+}
+
+.size-button:hover {
+  cursor: pointer;
+}
+
+.size-button:active {
+  color: #BDBDBD;
+  border: 1px solid #BDBDBD;
+}
+
+.color-section {
+  font-size: 10px;
+  padding-top: 36px;
+}
+
+.color-buttons {
+  padding-top: 6px;
+  display: flex;
+  gap: 16px;
+  border: none;
+}
+
+.color-button {
+  width: 28px;
+  height: 28px;
+  background-color: inherit;
+  border: none;
+  padding-bottom: 3px;
+  position: relative;
+}
+
+.color-button-white {
+  border: 1px solid #BDBDBD;
+}
+
+.color-button-black {
+  background-color: #000000;
+}
+
+.color-button-sand {
+  background-color: #F9F1DC;
+}
+
+.color-button:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  border-bottom: 1px solid #4F4F4F;
+}
+
+.color-button:hover {
+  cursor: pointer;
+  padding-bottom: 0;
+}
+
+.add-to-basket {
+  display: flex;
+  gap: 10px;
+  padding-top: 36px;
+}
+
+.add-button {
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 11px;
+  border: none;
+  padding: 15px 24.5px;
+  width: 306px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.save-button {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background-color: inherit;
+  cursor: pointer;
+  border: 1px solid #000000;
+}
+
+.characteristics {
+  width: 100%;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  height: 41px;
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 14px 0 0;
+  text-align: start;
+}
+
+.care {
+  display: flex;
+  justify-content: space-between;
+  height: 41px;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 14px 0 0;
+  text-align: start;
+}
+
+.plus {
+  padding-inline-end: 9px;
+}
+
+.plus:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  header {
+    width: 100%;
+    max-height: 50px;
+    padding: 16px 0 17px;
+  }
+
+  .logo {
+    justify-self: center;
+    grid-column-start: 2; 
+    grid-row-start: 1;
+  }
+
+  .save {
+    display: none;
+  }
+
+  .header-menu {
+    display: none;
+  }
+
+  .header-menu-mobile {
+    display: flex;
+    gap: 20px;
+    padding-inline-start: 19px;
+  }
+  
+  .basket-mobile {
+    display: block;
+    justify-self: end;
+    padding-inline-end: 18px;
+  }
+
+  main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .title-section {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .main-title {
+    grid-row-start: 1;
+  }
+
+  .save-title-icon {
+    display: block;
+    width: 13px;
+    height: 18px;
+    grid-row-start: 1;
+    justify-self: end;
+  }
+
+  .galery {
+    display: none;
+  }
+
+  .slider {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  .slider-container {
+    position: relative; 
+    width: 100%;
+    overflow-x: hidden;
+  } 
+
+  .slide img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: top;
+  }
+
+  .dots {
+    position: absolute; 
+    bottom: 12px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    display: flex; 
+    gap: 6px; 
+  }
+
+  .dot {
+    width: 7px; 
+    height: 7px; 
+    background-color: #FFFFFF; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    opacity: 0.4;
+  }
+
+  .dot.active {
+    opacity: 1;  
+  }
+
+  .description {
+    padding: 31px 17px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .add-to-basket {
+    display: none;
+  }
+
+  .sizes {
+    padding-top: 31px;
+    padding-bottom: 34px;
+  }
+
+  .color-section {
+    padding-top: 0;
+  }
+
+  .characteristics {
+    padding-top: 32px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1440px) {
+
+}
+
+
