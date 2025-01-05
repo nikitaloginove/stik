@@ -426,6 +426,7 @@ main {
 
   .characteristics {
     padding-top: 32px;
+    padding-inline-end: 0;
   }
 
 }
