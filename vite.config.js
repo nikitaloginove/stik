@@ -4,18 +4,21 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig(() => {
-    return {
-        plugins: [
-            vue(),
-            vueDevTools(),
-        ],
-        resolve: {
-            alias: {
-                '@': fileURLToPath(new URL('./src', import.meta.url))
-            },
-        },
-         build: {
-           outDir: 'docs', 
-         },
-    };
+  const isProduction = process.env.NODE_ENV === 'production';
+  const repoName = '/stik/'; 
+  return {
+    base: isProduction ? repoName : '/',
+    plugins: [
+      vue(),
+      vueDevTools(),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      },
+    },
+     build: {
+       outDir: 'docs',
+     },
+  };
 });
