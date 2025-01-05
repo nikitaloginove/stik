@@ -3,7 +3,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-
 export default defineConfig(() => {
     return {
         plugins: [
@@ -15,5 +14,8 @@ export default defineConfig(() => {
                 '@': fileURLToPath(new URL('./src', import.meta.url))
             },
         },
+         build: {
+           outDir: 'docs', 
+         },
     };
 });
