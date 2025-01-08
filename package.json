@@ -11,6 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "jquery": "^3.7.1",
+    "slick-carousel": "^1.8.1",
     "swiper": "^11.2.0",
     "vue": "^3.5.13",
     "vue-slider-component": "^3.2.24"
@@ -19,9 +21,11 @@
     "@eslint/js": "^9.14.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.1.0",
+    "dart-sass": "^1.25.0",
     "eslint": "^9.14.0",
     "eslint-plugin-vue": "^9.30.0",
     "prettier": "^3.3.3",
+    "sass-embedded": "^1.83.1",
     "vite": "^6.0.5",
     "vite-plugin-vue-devtools": "^7.6.8"
   }

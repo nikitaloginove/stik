@@ -1,4 +1,8 @@
-import './src/assets/main.css';
+import './src/assets/main.scss';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import { createApp } from 'vue';
 import App from './src/App.vue';

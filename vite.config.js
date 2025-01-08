@@ -19,6 +19,12 @@ export default defineConfig(() => {
     },
      build: {
        outDir: 'docs',
-     },
+       rollupOptions:{
+        external: ['swiper']
+        }
+      },
+      optimizeDeps:{
+        include:['swiper']
+      }
   };
 });
