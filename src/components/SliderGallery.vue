@@ -185,13 +185,7 @@ onMounted(() => {
 }
 
 .main__dots {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  z-index: 10;
+  display: none;
 }
 
 .main__dot {
@@ -228,6 +222,16 @@ onMounted(() => {
     display: block;
     object-fit: contain;
     object-position: top;
+  }
+
+  .main__dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
   }
 }
 </style>
