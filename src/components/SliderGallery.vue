@@ -1,90 +1,94 @@
 <template>
-  <main class="main">
+  <div class="main">
     <div class="main__gallery">
-      <img
+      <div
         v-for="(slide, index) in slides"
         :key="index"
-        :src="slide.image"
-        :alt="slide.alt"
-        @click="selectSlide(index)"
-        :class="{ 'main__gallery-image--selected': currentIndex === index }"
         class="main__gallery-image"
-        style="cursor: pointer"
-      />
+        :class="{ 'main__gallery-image--selected': currentSlide === index }"
+        @click="goToSlide(index)"
+      >
+        <img :src="slide.src" :alt="slide.alt" />
+      </div>
     </div>
-    <div class="main__slider-container">
-      <div class="main__slider">
-        <div
-          class="main__slides"
-          :style="{ transform: `translateX(-${currentIndex * containerWidth}px)` }"
-        >
-          <div v-for="(slide, index) in slides" :key="index" class="main__slide">
-            <img :src="slide.image" :alt="slide.alt" class="main__slide-image"/>
+    <div class="main__slider">
+      <div class="swiper" ref="swiperContainer">
+        <div class="swiper-wrapper">
+          <div v-for="(slide, index) in slides" :key="index" class="swiper-slide">
+            <img :src="slide.src" :alt="slide.alt" />
           </div>
         </div>
-        <div class="main__controls">
-          <button @click="prevSlide" :disabled="currentIndex === 0" class="main__control-prev">
-            <img src="../assets/images/prev.svg" alt="предыдущая картинка" class="main__control-prev-image">
-          </button>
-          <button
-            @click="nextSlide"
-            :disabled="currentIndex === slides.length - 1"
-            class="main__control-next"
-          >
-            <img src="../assets/images/next.svg" alt="следуюая картинка" class="main__control-next-image">
-          </button>
+        <div class="main__dots" v-if="showDots">
+          <div
+            v-for="(_, index) in slides"
+            :key="index"
+            class="main__dot"
+            :class="{ 'main__dot--active': currentSlide === index }"
+            @click="goToSlide(index)"
+          />
+        </div>
+
+        <div class="swiper-button-prev">
+          <img src="../assets/images/prev.svg" alt="предыдущий слайд" />
+        </div>
+        <div class="swiper-button-next">
+          <img src="../assets/images/next.svg" alt="следующий слайд" />
         </div>
       </div>
-      <div class="main__dots">
-        <span
-          v-for="(slide, index) in slides"
-          :key="index"
-          class="main__dot"
-          @click="goToSlide(index)"
-          :class="{ 'main__dot--active': currentIndex === index }"
-        ></span>
-      </div>
     </div>
-  </main>
+  </div>
 </template>
 
-<script>
-export default {
-  name: 'SliderGalleryComponent',
-  props: {
-    slides: {
-        type: Array,
-        required: true
-    }
-  },
-  data() {
-    return {
-      currentIndex: 0,
-      containerWidth: 0
-    };
-  },
-  mounted() {
-      this.containerWidth = document.querySelector('.main__slide').offsetWidth;
-  },
-  methods: {
-    selectSlide(index) {
-      this.currentIndex = index;
+<script setup>
+import { onMounted, ref, computed } from 'vue'
+import Swiper from 'swiper'
+import { Navigation, Pagination } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import picture from '../assets/images/picture.png'
+import picture2 from '../assets/images/picture2.png'
+import picture3 from '../assets/images/picture3.png'
+
+const swiperContainer = ref(null)
+let swiper = null
+const currentSlide = ref(0)
+
+const slides = ref([
+  { src: picture, alt: 'Slide - 1' },
+  { src: picture2, alt: 'Slide - 2' },
+  { src: picture3, alt: 'Slide - 3' },
+])
+
+const goToSlide = (index) => {
+  currentSlide.value = index
+  swiper.slideTo(index)
+}
+
+const showDots = computed(() => {
+  return window.innerWidth >= 375 && window.innerWidth <= 767
+})
+
+onMounted(() => {
+  swiper = new Swiper(swiperContainer.value, {
+    modules: [Navigation, Pagination],
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
-    prevSlide() {
-      this.currentIndex = Math.max(0, this.currentIndex - 1);
+    slidesPerView: 1,
+    spaceBetween: 0,
+    on: {
+      slideChange: () => {
+        currentSlide.value = swiper.activeIndex
+      },
     },
-    nextSlide() {
-        this.currentIndex = Math.min(this.slides.length - 1, this.currentIndex + 1)
-    },
-    goToSlide(index) {
-      this.currentIndex = index;
-    }
-  }
-};
+  })
+})
 </script>
 
 <style lang="scss" scoped>
-
 .main {
   width: 100%;
   display: grid;
@@ -100,66 +104,107 @@ export default {
   gap: 4px;
 }
 
+.main__gallery-image {
+  cursor: pointer;
+}
+
+.main__gallery-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.main__gallery-image--selected {
+  opacity: 0.5;
+}
+
 .main__slider {
   position: relative;
   width: 100%;
   overflow-x: hidden;
 }
 
-.main__slides {
+.swiper {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-wrapper {
   display: flex;
-  transition: transform 0.3s ease;
+  transition-property: transform;
+  transition-timing-function: ease;
+  transition-duration: 300ms;
 }
 
-.main__slide {
-  flex: 0 0 auto;
-  width: 100%; 
+.swiper-slide {
+  flex: 0 0 100%;
 }
 
-.main__gallery-image--selected {
-    opacity: 0.5;
-}
-
-.main__slide img {
+.swiper-slide img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
+  object-position: top;
 }
 
-.main__controls {
+.swiper-pagination {
+  display: none;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
   position: absolute;
   top: 50%;
-  left: 4%;
-  right: 4%;
-  display: flex;
-  justify-content: space-between;
   transform: translateY(-50%);
-}
-
-.main__control-prev {
   width: 32px;
   height: 32px;
-  background-color: #FFFFFF66;
+  background-color: #ffffff66;
   border: none;
-  cursor: pointer;
   border-radius: 50%;
-}
-
-.main__control-next {
-  width: 32px;
-  height: 32px;
-  background-color: #FFFFFF66;
-  border: none;
   cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  left: 4%;
+}
+
+.swiper-button-next {
+  right: 4%;
+}
+
+.main__dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.main__dot {
+  width: 7px;
+  height: 7px;
+  background-color: #ffffff;
   border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.4;
 }
 
-.main__control-prev:active {
-  opacity: 40%;
-}
-
-.main__control-next:active {
-  opacity: 40%;
+.main__dot--active {
+  opacity: 1;
 }
 
 @media (min-width: 375px) and (max-width: 767px) {
@@ -178,39 +223,11 @@ export default {
     grid-row-start: 1;
   }
 
-  .main__slider-container {
-    position: relative; 
-    width: 100%;
-    overflow-x: hidden;
-  } 
-
-  .main__slide img {
+  .swiper-slide img {
     width: 100%;
     display: block;
     object-fit: contain;
     object-position: top;
-  }
-
-  .main__dots {
-    position: absolute; 
-    bottom: 12px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    display: flex; 
-    gap: 6px; 
-  }
-
-  .main__dot {
-    width: 7px; 
-    height: 7px; 
-    background-color: #FFFFFF; 
-    border-radius: 50%; 
-    cursor: pointer; 
-    opacity: 0.4;
-  }
-
-  .main__dot--active {
-    opacity: 1;  
   }
 }
 </style>

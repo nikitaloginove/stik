@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import HeaderComponent from './components/Header.vue';
-import ProductDisplay from './components/ProductDisplay.vue';
+import HeaderComponent from './components/Header.vue'
+import ProductDisplay from './components/ProductDisplay.vue'
 
 export default {
   name: 'App',
@@ -15,25 +15,25 @@ export default {
     HeaderComponent,
     ProductDisplay,
   },
-    data() {
-        return {
-          product: {
-            slides: [
-                {
-                  image: new URL('./assets/images/picture.png', import.meta.url).href,
-                  alt: 'Slide 1',
-                },
-                {
-                  image: new URL('./assets/images/picture2.png', import.meta.url).href,
-                  alt: 'Slide 2',
-                },
-                {
-                  image: new URL('./assets/images/picture3.png', import.meta.url).href,
-                  alt: 'Slide 3',
-                },
-              ],
+  data() {
+    return {
+      product: {
+        slides: [
+          {
+            image: new URL('./assets/images/picture.png', import.meta.url).href,
+            alt: 'Slide 1',
           },
-        };
+          {
+            image: new URL('./assets/images/picture2.png', import.meta.url).href,
+            alt: 'Slide 2',
+          },
+          {
+            image: new URL('./assets/images/picture3.png', import.meta.url).href,
+            alt: 'Slide 3',
+          },
+        ],
+      },
+    }
   },
-};
+}
 </script>
